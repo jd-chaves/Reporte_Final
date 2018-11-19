@@ -110,7 +110,7 @@ public class RepoFilesPresenter extends BasePagerPresenter<IRepoFilesContract.Vi
     public boolean goBack() {
         if(!StringUtils.isBlank(curPath)){
             curPath = curPath.contains("/") ?
-                    curPath.substring(0, curPath.lastIndexOf("/")) : "";
+                    curPath.substring(0, curPath.lastIndexOf('/')) : "";
             loadFiles(false);
             return true;
         }
@@ -155,17 +155,20 @@ public class RepoFilesPresenter extends BasePagerPresenter<IRepoFilesContract.Vi
     private void updateFilePath(){
         filePath.clear();
         filePath.add(homePath);
+        FilePath path;
+        String name;
+        String fullPath;
         if(!StringUtils.isBlank(curPath)){
             String[] pathArray = curPath.split("/");
             for(int i = 0; i < pathArray.length; i++){
-                String name = pathArray[i];
-                String fullPath = "";
+                name = pathArray[i];
+                fullPath = "";
                 for(int j = 0; j <= i; j++){
                     fullPath = fullPath.concat(pathArray[j]).concat("/");
                 }
                 fullPath = fullPath.endsWith("/") ?
                         fullPath.substring(0, fullPath.length() - 1) : fullPath;
-                FilePath path = new FilePath(name, fullPath);
+                path = new FilePath(name, fullPath);
                 filePath.add(path);
             }
         }

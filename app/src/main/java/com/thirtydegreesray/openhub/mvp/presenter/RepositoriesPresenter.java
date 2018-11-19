@@ -389,9 +389,8 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
     private Repository parseCollectionsRepositoryData(Element element) throws Exception{
         String fullName = element.select("div > h1 > a").attr("href");
         fullName = fullName.substring(1);
-        String owner = fullName.substring(0, fullName.lastIndexOf("/"));
-        String repoName = fullName.substring(fullName.lastIndexOf("/") + 1);
-//        String ownerAvatar = element.select("div > div > a > img").attr("src");
+        String owner = fullName.substring(0, fullName.lastIndexOf('/'));
+        String repoName = fullName.substring(fullName.lastIndexOf('/') + 1);
         String ownerAvatar = "";
 
         Elements articleElements = element.getElementsByTag("div");
@@ -500,8 +499,8 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
     private Repository parseTrendingRepositoryData(Element element) throws Exception{
         String fullName = element.select("div > h3 > a").attr("href");
         fullName = fullName.substring(1);
-        String owner = fullName.substring(0, fullName.lastIndexOf("/"));
-        String repoName = fullName.substring(fullName.lastIndexOf("/") + 1);
+        String owner = fullName.substring(0, fullName.lastIndexOf('/'));
+        String repoName = fullName.substring(fullName.lastIndexOf('/') + 1);
 
         Element descElement = element.select("div > p").first();
         StringBuilder desc = new StringBuilder("");
@@ -523,7 +522,7 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
         String periodNumStr = "0";
         if(periodElement != null){
             periodNumStr = periodElement.childNodes().get(2).toString().trim();
-            periodNumStr = periodNumStr.substring(0, periodNumStr.indexOf(" "))
+            periodNumStr = periodNumStr.substring(0, periodNumStr.indexOf(' '))
                     .replaceAll(",", "");
         }
 

@@ -76,9 +76,13 @@ public class DBOpenHelper extends DaoMaster.DevOpenHelper {
     private List<LocalRepo> getLocalRepoList(List<TraceRepo> traceRepoList, List<BookMarkRepo> bookmarkRepoList){
         List<LocalRepo> localRepoList = new ArrayList<>();
         List<Long> repoIdList = new ArrayList<>();
-        for(TraceRepo repo : traceRepoList){
+        LocalRepo localRepo;
+        int tam = traceRepoList.size();
+        TraceRepo repo;
+        for(int i = 0; i< tam; i++){
+            repo = traceRepoList.get(i);
             if(!repoIdList.contains(repo.getId())){
-                LocalRepo localRepo = new LocalRepo();
+                localRepo = new LocalRepo();
                 localRepo.setId(repo.getId());
                 localRepo.setDescription(repo.getDescription());
                 localRepo.setFork(repo.getFork());
@@ -93,21 +97,24 @@ public class DBOpenHelper extends DaoMaster.DevOpenHelper {
                 repoIdList.add(repo.getId());
             }
         }
-        for(BookMarkRepo repo : bookmarkRepoList){
-            if(!repoIdList.contains(repo.getId())){
-                LocalRepo localRepo = new LocalRepo();
-                localRepo.setId(repo.getId());
-                localRepo.setDescription(repo.getDescription());
-                localRepo.setFork(repo.getFork());
-                localRepo.setForksCount(repo.getForksCount());
-                localRepo.setLanguage(repo.getLanguage());
-                localRepo.setName(repo.getName());
-                localRepo.setOwnerAvatarUrl(repo.getOwnerAvatarUrl());
-                localRepo.setOwnerLogin(repo.getOwnerLogin());
-                localRepo.setStargazersCount(repo.getStargazersCount());
-                localRepo.setWatchersCount(repo.getWatchersCount());
+        BookMarkRepo repoB;
+        tam = bookmarkRepoList.size();
+        for(int i = 0; i<tam;i++ ){
+            repoB = bookmarkRepoList.get(i);
+            if(!repoIdList.contains(repoB.getId())){
+                localRepo = new LocalRepo();
+                localRepo.setId(repoB.getId());
+                localRepo.setDescription(repoB.getDescription());
+                localRepo.setFork(repoB.getFork());
+                localRepo.setForksCount(repoB.getForksCount());
+                localRepo.setLanguage(repoB.getLanguage());
+                localRepo.setName(repoB.getName());
+                localRepo.setOwnerAvatarUrl(repoB.getOwnerAvatarUrl());
+                localRepo.setOwnerLogin(repoB.getOwnerLogin());
+                localRepo.setStargazersCount(repoB.getStargazersCount());
+                localRepo.setWatchersCount(repoB.getWatchersCount());
                 localRepoList.add(localRepo);
-                repoIdList.add(repo.getId());
+                repoIdList.add(repoB.getId());
             }
         }
         return localRepoList;
@@ -116,9 +123,13 @@ public class DBOpenHelper extends DaoMaster.DevOpenHelper {
     private List<LocalUser> getLocalUserList(List<TraceUser> traceUserList, List<BookMarkUser> bookMarkUserList){
         List<LocalUser> localUserList = new ArrayList<>();
         List<String> userIdList = new ArrayList<>();
-        for(TraceUser user : traceUserList){
+        TraceUser user;
+        int tam = traceUserList.size();
+        LocalUser localUser;
+        for(int i=0; i< tam;i++){
+            user  = traceUserList.get(i);
             if(!userIdList.contains(user.getLogin())){
-                LocalUser localUser = new LocalUser();
+                localUser = new LocalUser();
                 localUser.setLogin(user.getLogin());
                 localUser.setAvatarUrl(user.getAvatarUrl());
                 localUser.setFollowers(user.getFollowers());
@@ -128,16 +139,19 @@ public class DBOpenHelper extends DaoMaster.DevOpenHelper {
                 userIdList.add(user.getLogin());
             }
         }
-        for(BookMarkUser user : bookMarkUserList){
-            if(!userIdList.contains(user.getLogin())){
-                LocalUser localUser = new LocalUser();
-                localUser.setLogin(user.getLogin());
-                localUser.setAvatarUrl(user.getAvatarUrl());
-                localUser.setFollowers(user.getFollowers());
-                localUser.setFollowing(user.getFollowing());
-                localUser.setName(user.getName());
+        BookMarkUser userB;
+        tam = bookMarkUserList.size();
+        for(int i = 0; i< tam;i++){
+            userB = bookMarkUserList.get(i);
+            if(!userIdList.contains(userB.getLogin())){
+                localUser = new LocalUser();
+                localUser.setLogin(userB.getLogin());
+                localUser.setAvatarUrl(userB.getAvatarUrl());
+                localUser.setFollowers(userB.getFollowers());
+                localUser.setFollowing(userB.getFollowing());
+                localUser.setName(userB.getName());
                 localUserList.add(localUser);
-                userIdList.add(user.getLogin());
+                userIdList.add(userB.getLogin());
             }
         }
         return localUserList;
@@ -145,8 +159,12 @@ public class DBOpenHelper extends DaoMaster.DevOpenHelper {
 
     private List<Trace> getTraceList(List<TraceRepo> traceRepoList, List<TraceUser> traceUserList){
         List<Trace> traceList = new ArrayList<>();
-        for(TraceRepo oriTrace : traceRepoList){
-            Trace trace = new Trace(UUID.randomUUID().toString());
+        TraceRepo oriTrace;
+        Trace trace;
+        int tam = traceRepoList.size();
+        for(int i =0 ; i<tam;i++){
+            oriTrace = traceRepoList.get(i);
+            trace = new Trace(UUID.randomUUID().toString());
             trace.setType("repo");
             trace.setRepoId(oriTrace.getId());
             trace.setStartTime(oriTrace.getStartTime());
@@ -154,13 +172,16 @@ public class DBOpenHelper extends DaoMaster.DevOpenHelper {
             trace.setTraceNum(oriTrace.getTraceNum());
             traceList.add(trace);
         }
-        for(TraceUser oriTrace : traceUserList){
-            Trace trace = new Trace(UUID.randomUUID().toString());
+        TraceUser oriTraceUser;
+        tam = traceUserList.size();
+        for(int i = 0; i< tam;i++){
+            oriTraceUser = traceUserList.get(i);
+            trace = new Trace(UUID.randomUUID().toString());
             trace.setType("user");
-            trace.setUserId(oriTrace.getLogin());
-            trace.setStartTime(oriTrace.getStartTime());
-            trace.setLatestTime(oriTrace.getLatestTime());
-            trace.setTraceNum(oriTrace.getTraceNum());
+            trace.setUserId(oriTraceUser.getLogin());
+            trace.setStartTime(oriTraceUser.getStartTime());
+            trace.setLatestTime(oriTraceUser.getLatestTime());
+            trace.setTraceNum(oriTraceUser.getTraceNum());
             traceList.add(trace);
         }
         return traceList;

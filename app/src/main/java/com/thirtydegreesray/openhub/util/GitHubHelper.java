@@ -121,7 +121,7 @@ public class GitHubHelper {
     public static String getUserFromUrl(@NonNull String url){
         if(!isUserUrl(url)) return null;
         if(url.endsWith("/")) url = url.substring(0, url.length() - 1);
-        return url.substring(url.lastIndexOf("/") + 1);
+        return url.substring(url.lastIndexOf('/') + 1);
     }
 
     @Nullable

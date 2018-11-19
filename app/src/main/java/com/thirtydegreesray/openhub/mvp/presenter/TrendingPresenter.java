@@ -82,7 +82,7 @@ public class TrendingPresenter extends BasePresenter<ITrendingContract.View>
         for(TrendingLanguage language : languages){
             String slug = language.getSlug();
             if(slug.contains("?")){
-                slug = slug.substring(0, slug.indexOf("?"));
+                slug = slug.substring(0, slug.indexOf('?'));
                 language.setSlug(slug);
             }
         }

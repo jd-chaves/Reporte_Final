@@ -104,19 +104,31 @@ public class TopicsPresenter extends BasePresenter<ITopicsContract.View>
     private ArrayList<Topic> getTopTopics(Document doc) throws Exception{
         ArrayList<Topic> topTopics = new ArrayList<>();
         Elements elements = doc.getElementsByClass("col-12 col-sm-6 col-md-4 mb-4");
-        for (Element element : elements) {
-            Element idElement = element.select("a").first();
-            Element imageElement = element.select("a > img").first();
-            Element titleElement = element.select("a > p").get(0);
-            Element descElement = element.select("a > p").get(1);
+        Element idElement;
+        Element imageElement;
+        Element titleElement;
+        Element descElement;
+        String id;
+        String name;
+        String desc;
+        String image;
+        Element element;
+        Topic topic;
+        int tam = elements.size();
+        for (int i = 0; i < tam;i++) {
+            element = elements.get(i);
+             idElement = element.select("a").first();
+             imageElement = element.select("a > img").first();
+             titleElement = element.select("a > p").get(0);
+             descElement = element.select("a > p").get(1);
 
-            String id = idElement.attr("href");
-            id = id.substring(id.lastIndexOf("/") + 1);
-            String name = titleElement.textNodes().get(0).text();
-            String desc = descElement.textNodes().get(0).text();
-            String image = imageElement == null ? null : imageElement.attr("src");
+             id = idElement.attr("href");
+            id = id.substring(id.lastIndexOf('/') + 1);
+             name = titleElement.textNodes().get(0).text();
+             desc = descElement.textNodes().get(0).text();
+             image = imageElement == null ? null : imageElement.attr("src");
 
-            Topic topic = new Topic()
+             topic = new Topic()
                     .setId(id)
                     .setName(name)
                     .setDesc(desc)
@@ -129,19 +141,31 @@ public class TopicsPresenter extends BasePresenter<ITopicsContract.View>
     private ArrayList<Topic> getFeaturedTopics(Document doc) throws Exception{
         ArrayList<Topic> topTopics = new ArrayList<>();
         Elements topElements = doc.getElementsByClass("py-4 border-bottom");
-        for (Element element : topElements) {
-            Element idElement = element.select("a").first();
-            Element imageElement = element.select("a > img").first();
-            Element titleElement = element.select("a > div > p").get(0);
-            Element descElement = element.select("a > div > p").get(1);
+        Topic topic;
+        Element idElement;
+        Element imageElement;
+        Element titleElement;
+        Element descElement;
+        String id;
+        String name;
+        String desc;
+        String image;
+        Element element;
+        int tam = topElements.size();
+        for (int i = 0; i < tam; i++) {
+            element = topElements.get(i);
+            idElement = element.select("a").first();
+            imageElement = element.select("a > img").first();
+            titleElement = element.select("a > div > p").get(0);
+            descElement = element.select("a > div > p").get(1);
 
-            String id = idElement.attr("href");
-            id = id.substring(id.lastIndexOf("/") + 1);
-            String name = titleElement.textNodes().get(0).text();
-            String desc = descElement.textNodes().get(0).text();
-            String image = imageElement == null ? null : imageElement.attr("src");
+            id = idElement.attr("href");
+            id = id.substring(id.lastIndexOf('/') + 1);
+            name = titleElement.textNodes().get(0).text();
+            desc = descElement.textNodes().get(0).text();
+            image = imageElement == null ? null : imageElement.attr("src");
 
-            Topic topic = new Topic()
+            topic = new Topic()
                     .setId(id)
                     .setName(name)
                     .setDesc(desc)

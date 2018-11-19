@@ -142,18 +142,18 @@ class HtmlHelper {
         if (gitHubName == null) return source;
         String owner = gitHubName.getUserName();
         String repo = gitHubName.getRepoName();
-        String branch = baseUrl.substring(baseUrl.indexOf("blob") + 5, baseUrl.lastIndexOf("/"));
+        String branch = baseUrl.substring(baseUrl.indexOf("blob") + 5, baseUrl.lastIndexOf('/'));
 
         Matcher linksMatcher = LINK_PATTERN.matcher(source);
         while (linksMatcher.find()) {
             String oriUrl = linksMatcher.group(1);
             if (oriUrl.contains("http://") || oriUrl.contains("https://")
-                    || oriUrl.startsWith("#") //filter markdown inner link
+                    || oriUrl.charAt(0)=='#' //filter markdown inner link
                     ) {
                 continue;
             }
 
-            String subUrl = oriUrl.startsWith("/") ? oriUrl : "/".concat(oriUrl);
+            String subUrl = oriUrl.charAt(0)=='/'? oriUrl : "/".concat(oriUrl);
             String fixedUrl;
             if (!GitHubHelper.isImage(oriUrl)) {
                 fixedUrl = "https://github.com/" + owner + "/" + repo + "/blob/" + branch + subUrl;
@@ -171,7 +171,7 @@ class HtmlHelper {
                 continue;
             }
 
-            String subUrl = oriUrl.startsWith("/") ? oriUrl : "/".concat(oriUrl);
+            String subUrl = oriUrl.charAt(0)=='/' ? oriUrl : "/".concat(oriUrl);
             String fixedUrl = "https://raw.githubusercontent.com/" + owner + "/" + repo + "/" + branch + subUrl;
             source = source.replace("src=\"" + oriUrl + "\"", "src=\"" + fixedUrl + "\"");
         }
@@ -253,7 +253,7 @@ class HtmlHelper {
                     curAddNumber == -1 ? "" : String.valueOf(curAddNumber));
 
             source.append("\n")
-                    .append("<div ").append(classStr).append(">")
+                    .append("<div ").append(classStr).append('>')
                     .append(wrap ? "" : lineNumberStr + getBlank(1))
                     .append(line)
                     .append("</div>");
@@ -263,7 +263,7 @@ class HtmlHelper {
 
     private static int getRemoveStartLine(String line){
         try {
-            return Integer.parseInt(line.substring(line.indexOf("-") + 1, line.indexOf(",")));
+            return Integer.parseInt(line.substring(line.indexOf('-') + 1, line.indexOf(',')));
         } catch (Exception e){
             return 1;
         }
@@ -271,8 +271,8 @@ class HtmlHelper {
 
     private static int getAddStartLine(String line){
         try {
-            return Integer.parseInt(line.substring(line.indexOf("+") + 1,
-                    line.indexOf(",", line.indexOf("+"))));
+            return Integer.parseInt(line.substring(line.indexOf('+') + 1,
+                    line.indexOf(',', line.indexOf('+'))));
         } catch (Exception e){
             return 1;
         }

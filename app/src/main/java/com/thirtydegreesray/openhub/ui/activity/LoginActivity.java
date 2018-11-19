@@ -37,7 +37,6 @@ import es.dmoral.toasty.Toasty;
 public class LoginActivity extends BaseActivity<LoginPresenter>
         implements ILoginContract.View {
 
-    private final String TAG = LoginActivity.class.getSimpleName();
 
     @BindView(R.id.user_name_et) TextInputEditText userNameEt;
     @BindView(R.id.user_name_layout) TextInputLayout userNameLayout;

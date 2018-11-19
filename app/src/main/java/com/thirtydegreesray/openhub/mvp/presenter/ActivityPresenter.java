@@ -151,7 +151,7 @@ public class ActivityPresenter extends BasePagerPresenter<IActivityContract.View
             if(event.getRepo() != null){
                 String fullName = event.getRepo().getName();
                 event.getRepo().setFullName(fullName);
-                event.getRepo().setName(fullName.substring(fullName.indexOf("/") + 1));
+                event.getRepo().setName(fullName.substring(fullName.indexOf('/') + 1));
             }
         }
     }

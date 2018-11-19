@@ -50,7 +50,7 @@ public class ViewerActivity extends SingleFragmentActivity<IBaseContract.Present
     }
 
     public static void showImage(@NonNull Context context, @NonNull String imageUrl){
-        String title = imageUrl.substring(imageUrl.lastIndexOf("/") + 1);
+        String title = imageUrl.substring(imageUrl.lastIndexOf('/') + 1);
         showImage(context, title, imageUrl);
     }
 
@@ -73,8 +73,8 @@ public class ViewerActivity extends SingleFragmentActivity<IBaseContract.Present
         fileModel.setHtmlUrl(htmlUrl);
         fileModel.setDownloadUrl(downloadUrl);
         fileModel.setUrl(url);
-        fileModel.setName(url.substring(url.lastIndexOf("/") + 1,
-                url.contains("?") ? url.indexOf("?") : url.length()));
+        fileModel.setName(url.substring(url.lastIndexOf('/') + 1,
+                url.contains("?") ? url.indexOf('?') : url.length()));
         show(context, fileModel);
     }
 

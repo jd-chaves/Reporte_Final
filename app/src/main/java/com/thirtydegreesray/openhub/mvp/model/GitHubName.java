@@ -48,14 +48,14 @@ public class GitHubName {
         if(!GitHubHelper.isReleaseTagUrl(url)){
             return null;
         }
-        return url.substring(url.lastIndexOf("/") + 1);
+        return url.substring(url.lastIndexOf('/') + 1);
     }
 
     public String getCommitShaName(){
         if(!GitHubHelper.isCommitUrl(url)){
             return null;
         }
-        return url.substring(url.lastIndexOf("/") + 1);
+        return url.substring(url.lastIndexOf('/') + 1);
     }
 
 

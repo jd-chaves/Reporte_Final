@@ -21,7 +21,6 @@ import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
  */
 public class SplashActivity extends BaseActivity<SplashPresenter> implements ISplashContract.View {
 
-    private final String TAG = "SplashActivity";
 
 //    private final int REQUEST_ACCESS_TOKEN = 1;
 

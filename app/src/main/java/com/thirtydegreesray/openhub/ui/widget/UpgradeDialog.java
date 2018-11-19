@@ -84,7 +84,7 @@ public enum UpgradeDialog implements UpgradeListener {
                 .setPositiveButton(confirmTextId, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        DownloadTask task = Beta.startDownload();
+                         Beta.startDownload();
                         dialog.dismiss();
                     }
                 })

@@ -148,8 +148,12 @@ public class NotificationsPresenter extends BasePagerPresenter<INotificationsCon
 
         ArrayList<DoubleTypesModel<Repository, Notification>> sortedList = new ArrayList<>();
         Map<String, ArrayList<Notification>> sortedMap = new LinkedHashMap<>();
-        for (Notification notification : notifications) {
-            ArrayList<Notification> list = sortedMap.get(notification.getRepository().getFullName());
+        ArrayList<Notification> list;
+        int tam = notifications.size();
+        Notification notification;
+        for (int i = 0; i< tam; i++) {
+            notification = notifications.get(i);
+            list = sortedMap.get(notification.getRepository().getFullName());
             if (list == null) {
                 list = new ArrayList<>();
                 sortedMap.put(notification.getRepository().getFullName(), list);
@@ -158,11 +162,14 @@ public class NotificationsPresenter extends BasePagerPresenter<INotificationsCon
         }
 
         Iterator<String> iterator = sortedMap.keySet().iterator();
+        //Aca toca iterator porque no hay una forma evidente de indexar
         for (; iterator.hasNext(); ) {
             String key = iterator.next();
-            ArrayList<Notification> list = sortedMap.get(key);
+            list = sortedMap.get(key);
             sortedList.add(new DoubleTypesModel<Repository, Notification>(list.get(0).getRepository(), null));
-            for(Notification notification : list){
+            tam = list.size();
+            for(int i = 0; i < tam; i++){
+                notification = list.get(i);
                 sortedList.add(new DoubleTypesModel<Repository, Notification>(null, notification));
             }
         }

@@ -72,7 +72,7 @@ public class WikiModel implements Parcelable {
     public String getName(){
         if(id != null && id.contains("wiki")){
             int start = id.indexOf("wiki/") + 5;
-            int end = id.lastIndexOf("/");
+            int end = id.lastIndexOf('/');
             if(end > start){
                 String name = id.substring(start, end).replaceAll("-", " ");
                 try {

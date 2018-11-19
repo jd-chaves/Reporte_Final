@@ -219,9 +219,13 @@ public class AppOpener {
         final String ourPackageName = context.getPackageName();
 
         Collections.sort(activities, new ResolveInfo.DisplayNameComparator(pm));
-
-        for (ResolveInfo resInfo : activities) {
-            ActivityInfo info = resInfo.activityInfo;
+        ResolveInfo resInfo;
+        ActivityInfo info;
+        Intent targetIntent;
+        int tam = activities.size();
+        for (int i = 0; i  < tam; i++) {
+            resInfo = activities.get(i);
+            info = resInfo.activityInfo;
             if (!info.enabled || !info.exported) {
                 continue;
             }
@@ -232,7 +236,7 @@ public class AppOpener {
                 continue;
             }
 
-            Intent targetIntent = new Intent(intent);
+            targetIntent = new Intent(intent);
             targetIntent.setPackage(info.packageName);
             targetIntent.setDataAndType(uri, intent.getType());
             chooserIntents.add(targetIntent);
@@ -250,7 +254,7 @@ public class AppOpener {
 
         Intent chooserIntent = Intent.createChooser(lastIntent, null);
         chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS,
-                chooserIntents.toArray(new Intent[chooserIntents.size()]));
+                chooserIntents.toArray(new Intent[0]));
         return chooserIntent;
     }
 

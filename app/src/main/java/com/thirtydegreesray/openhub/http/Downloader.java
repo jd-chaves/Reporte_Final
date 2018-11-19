@@ -87,7 +87,7 @@ public class Downloader {
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
         String title = mContext.getString(R.string.downloading);
         if(fileName.contains("/")){
-            title = title.concat(" ").concat(fileName.substring(fileName.lastIndexOf("/") + 1));
+            title = title.concat(" ").concat(fileName.substring(fileName.lastIndexOf('/') + 1));
         }else{
             title = title.concat(" ").concat(fileName);
         }

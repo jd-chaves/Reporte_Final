@@ -79,17 +79,29 @@ public class CollectionsPresenter extends BasePresenter<ICollectionsContract.Vie
                         Document doc = Jsoup.parse(s, AppConfig.GITHUB_BASE_URL);
                         Elements elements = doc.getElementsByClass(
                                 "d-flex border-bottom border-gray-light pb-4 mb-5");
-                        for (Element element : elements) {
-                            Element titleElement = element.select("div > h2 > a").first();
-                            Element descElement = element.select("div").last();
-                            String id = titleElement.attr("href");
-                            id = id.substring(id.lastIndexOf("/") + 1);
-                            String title = titleElement.textNodes().get(0).toString();
 
-                            List<TextNode> descTextNodes = descElement.textNodes();
-                            int descIndex = descTextNodes.size() == 0 ? 0 : descTextNodes.size() - 1;
-                            String desc = descTextNodes.get(descIndex).toString().trim();
-                            Collection collection = new Collection(id, title, desc);
+                        Element titleElement;
+                        Element descElement;
+                        String id;
+                        String title;
+                        List<TextNode> descTextNodes;
+                        int descIndex;
+                        String desc;
+                        Collection collection;
+                        Element element;
+                        int tam = elements.size();
+                        for (int i = 0; i < tam;i++) {
+                            element = elements.get(i);
+                            titleElement = element.select("div > h2 > a").first();
+                            descElement = element.select("div").last();
+                            id = titleElement.attr("href");
+                            id = id.substring(id.lastIndexOf('/') + 1);
+                            title = titleElement.textNodes().get(0).toString();
+
+                            descTextNodes = descElement.textNodes();
+                            descIndex = descTextNodes.size() == 0 ? 0 : descTextNodes.size() - 1;
+                            desc = descTextNodes.get(descIndex).toString().trim();
+                            collection = new Collection(id, title, desc);
                             collections.add(collection);
                         }
                     } catch (Exception e) {

@@ -206,14 +206,17 @@ public class ActivitiesAdapter extends BaseAdapter<ActivitiesAdapter.ViewHolder,
                     int maxLines = 4;
                     int max = count > maxLines ? maxLines - 1 : count;
 
+                    PushEventCommit commit;
+                    String sha;
+                    int lastLength;
                     for (int i = 0; i < max; i++) {
-                        PushEventCommit commit = model.getPayload().getCommits().get(i);
+                        commit = model.getPayload().getCommits().get(i);
                         if (i != 0) {
                             descSpan.append("\n");
                         }
 
-                        int lastLength = descSpan.length();
-                        String sha = commit.getSha().substring(0, 7);
+                        lastLength = descSpan.length();
+                        sha = commit.getSha().substring(0, 7);
                         descSpan.append(sha);
                         descSpan.setSpan(new TextAppearanceSpan(context, R.style.text_link),
                                 lastLength, lastLength + sha.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);

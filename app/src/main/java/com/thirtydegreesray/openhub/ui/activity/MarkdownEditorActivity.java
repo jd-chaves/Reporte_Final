@@ -54,7 +54,6 @@ public class MarkdownEditorActivity extends PagerActivity implements MarkdownEdi
     @AutoAccess @StringRes int title;
     @AutoAccess ArrayList<String> mentionUsers;
     private MarkdownEditorCallback markdownEditorCallback;
-    private boolean isKeyBoardShow = true;
 
     @Override
     protected void setupActivityComponent(AppComponent appComponent) {

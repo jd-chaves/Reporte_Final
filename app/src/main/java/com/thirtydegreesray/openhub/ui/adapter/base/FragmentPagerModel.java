@@ -180,9 +180,6 @@ public class FragmentPagerModel {
         Fragment fragment  = fragments.get(position);
         if(fragment == null){
             fragment = fragmentCreator.createFragment();
-//            Logger.d("create fragment " + fragment + (Math.random() * 1000 * 1000));
-        }else{
-//            Logger.d("reuse fragment" + fragment + (Math.random() * 1000 * 1000));
         }
         return (BaseFragment) fragment;
     }

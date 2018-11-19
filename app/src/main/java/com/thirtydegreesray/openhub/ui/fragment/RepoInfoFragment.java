@@ -130,7 +130,7 @@ public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
         String fullName = repository.getFullName();
         SpannableStringBuilder spannable = new SpannableStringBuilder(fullName);
         spannable.setSpan(new ForegroundColorSpan(ViewUtils.getAccentColor(getContext())),
-                0, fullName.indexOf("/"), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                0, fullName.indexOf('/'), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         spannable.setSpan(new ClickableSpan() {
             @Override
             public void onClick(View widget) {
@@ -142,7 +142,7 @@ public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
             public void updateDrawState(TextPaint ds) {
 
             }
-        }, 0, fullName.indexOf("/"), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }, 0, fullName.indexOf('/'), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         repoTitleText.setMovementMethod(LinkMovementMethod.getInstance());
         repoTitleText.setText(spannable);
     }

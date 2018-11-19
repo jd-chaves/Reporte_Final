@@ -17,9 +17,6 @@ import java.security.NoSuchAlgorithmException;
  */
 
 public class SignatureUtils {
-
-    private final static String TAG = SignatureUtils.class.getSimpleName();
-
     public static boolean isReleaseSign(@NonNull Context context){
         return AppConfig.OPENHUB_RELEASE_SIGN_MD5.equals(getSignMd5(context));
     }
@@ -56,12 +53,12 @@ public class SignatureUtils {
             byte[] byteArray = messageDigest.digest();
             for (int i = 0; i < byteArray.length; i++) {
                 if (Integer.toHexString(0xFF & byteArray[i]).length() == 1) {
-                    md5StrBuff.append("0").append(Integer.toHexString(0xFF & byteArray[i]));
+                    md5StrBuff.append('0').append(Integer.toHexString(0xFF & byteArray[i]));
                 } else {
                     md5StrBuff.append(Integer.toHexString(0xFF & byteArray[i]));
                 }
                 if(i != byteArray.length - 1){
-                    md5StrBuff.append(":");
+                    md5StrBuff.append(':');
                 }
             }
         } catch (NoSuchAlgorithmException e) {

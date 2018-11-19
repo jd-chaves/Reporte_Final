@@ -153,7 +153,7 @@ public class Issue implements Parcelable {
 
     public String getRepoName() {
         return (!StringUtils.isBlank(repoUrl) && repoUrl.contains("/")) ?
-                repoUrl.substring(repoUrl.lastIndexOf("/") + 1) : null;
+                repoUrl.substring(repoUrl.lastIndexOf('/') + 1) : null;
     }
 
     public String getRepoFullName() {
@@ -163,7 +163,7 @@ public class Issue implements Parcelable {
 
     public String getRepoAuthorName() {
         return (!StringUtils.isBlank(repoUrl) && repoUrl.contains("repos/")) ?
-                repoUrl.substring(repoUrl.lastIndexOf("repos/") + 6, repoUrl.lastIndexOf("/")) : null;
+                repoUrl.substring(repoUrl.lastIndexOf("repos/") + 6, repoUrl.lastIndexOf('/')) : null;
     }
 
     public String getHtmlUrl() {

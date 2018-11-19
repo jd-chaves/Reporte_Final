@@ -110,12 +110,12 @@ public class CommitFile implements Parcelable {
 
     public String getShortFileName() {
         return fileName == null || !fileName.contains("/") ?
-                fileName : fileName.substring(fileName.lastIndexOf("/") + 1);
+                fileName : fileName.substring(fileName.lastIndexOf('/') + 1);
     }
 
     public String getBasePath() {
         return fileName == null || !fileName.contains("/") ?
-                fileName : fileName.substring(0, fileName.lastIndexOf("/") + 1);
+                fileName : fileName.substring(0, fileName.lastIndexOf('/') + 1);
     }
 
     @Override

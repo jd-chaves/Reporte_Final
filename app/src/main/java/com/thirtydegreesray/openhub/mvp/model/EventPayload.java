@@ -103,7 +103,7 @@ public class EventPayload implements Parcelable {
     }
 
     public String getBranch(){
-        return StringUtils.isBlank(ref) ? null : ref.substring(ref.lastIndexOf("/") + 1);
+        return StringUtils.isBlank(ref) ? null : ref.substring(ref.lastIndexOf('/') + 1);
     }
 
     public void setRef(String ref) {

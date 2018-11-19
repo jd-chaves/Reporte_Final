@@ -183,8 +183,10 @@ public class IssuePresenter extends BasePagerPresenter<IIssuesContract.View>
                 action = "mentions";
                 break;
         }
-        queryStr = queryStr + action + ":" + AppData.INSTANCE.getLoggedUser().getLogin()
-                + "+" + "state:" + issuesFilter.getIssueState().name().toLowerCase();
+        StringBuilder builder = new StringBuilder();
+        builder.append(queryStr).append(action).append(':').append( AppData.INSTANCE.getLoggedUser().getLogin())
+                .append("+state").append(issuesFilter.getIssueState().name().toLowerCase());
+        queryStr = builder.toString();
         return queryStr;
     }
 

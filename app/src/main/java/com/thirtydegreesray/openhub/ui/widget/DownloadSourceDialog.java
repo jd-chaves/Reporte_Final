@@ -43,14 +43,16 @@ public class DownloadSourceDialog {
 
     private static ArrayList<DownloadSource> getDownloadSources(Context context, Release release){
         ArrayList<DownloadSource> sources = new ArrayList<>();
-        for(ReleaseAsset asset : release.getAssets()){
-            sources.add(new DownloadSource(asset.getDownloadUrl(), false, asset.getName(), asset.getSize()));
-        }
+    ReleaseAsset asset;
+    int tam = release.getAssets().size();
+       for(int i =0; i< tam;i++){
+        asset = release.getAssets().get(i);
+        sources.add(new DownloadSource(asset.getDownloadUrl(), false, asset.getName(), asset.getSize()));
+    }
         sources.add(new DownloadSource(release.getZipballUrl(), true,
-                context.getString(R.string.source_code_zip)));
+            context.getString(R.string.source_code_zip)));
         sources.add(new DownloadSource(release.getTarballUrl(), true,
-                context.getString(R.string.source_code_tar)));
+            context.getString(R.string.source_code_tar)));
         return sources;
     }
-
 }

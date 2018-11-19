@@ -104,22 +104,25 @@ public class EditLabelDialog implements DialogInterface.OnDismissListener,
         LinearLayout rowLay = null;
         int colorViewHeight = WindowUtil.dipToPx(activity, 36);
 
+        ViewGroup.LayoutParams layoutParams;
+        LinearLayout.LayoutParams colorLayoutParams;
+        String rgbColor;
         for (int i = 0; i < colorsResId.length; i++) {
             if (rowLay == null || i % 4 == 0) {
                 rowLay = new LinearLayout(activity);
                 rowLay.setOrientation(LinearLayout.HORIZONTAL);
-                ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 rowLay.setLayoutParams(layoutParams);
                 colorsLay.addView(rowLay);
             }
             TextView colorView = new TextView(activity);
-            LinearLayout.LayoutParams colorLayoutParams = new LinearLayout.LayoutParams(0, colorViewHeight);
+            colorLayoutParams = new LinearLayout.LayoutParams(0, colorViewHeight);
             colorLayoutParams.weight = 1;
             colorView.setLayoutParams(colorLayoutParams);
             colorView.setGravity(Gravity.CENTER);
             colorView.setTextColor(ViewUtils.getTitleColor(activity));
             if (i != colorsResId.length - 1) {
-                String rgbColor = ViewUtils.getRGBColor(colorsResId[i], false);
+                rgbColor = ViewUtils.getRGBColor(colorsResId[i], false);
                 colorView.setText("#".concat(rgbColor));
                 colorView.setBackgroundColor(colorsResId[i]);
                 colorView.setTag(rgbColor);
@@ -208,15 +211,6 @@ public class EditLabelDialog implements DialogInterface.OnDismissListener,
 
     private int getRandomColor(){
         return colorArray[(int)((colorArray.length - 1) * Math.random())];
-    }
-
-    private boolean isColorInLocalArray(int color){
-        for (int aColorArray : colorArray) {
-            if (color == aColorArray) {
-                return true;
-            }
-        }
-        return false;
     }
 
     @Override

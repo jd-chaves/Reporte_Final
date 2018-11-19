@@ -262,8 +262,9 @@ public class ViewUtils {
             return labelsText;
         }
         int start;
+        Label label;
         for(int i = 0; i < labels.size(); i++){
-            Label label = labels.get(i);
+            label = labels.get(i);
             start = labelsText.length();
             labelsText.append(label.getName());
             labelsText.setSpan(new IssueLabelSpan(context, label), start, start + label.getName().length(), 0);

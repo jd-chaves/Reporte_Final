@@ -30,7 +30,11 @@ public class CommitFilesPresenter extends BasePresenter<ICommitFilesContract.Vie
             ArrayList<CommitFile> commitFiles) {
         ArrayList<DoubleTypesModel<CommitFilesPathModel, CommitFile>>  list = new ArrayList<>();
         String preBasePath = "";
-        for(CommitFile commitFile : commitFiles){
+
+        CommitFile commitFile;
+        int tam = commitFiles.size();
+        for(int i=0; i < tam; i++){
+            commitFile = commitFiles.get(i);
             if(!preBasePath.equals(commitFile.getBasePath())){
                 list.add(new DoubleTypesModel<CommitFilesPathModel, CommitFile>(
                         new CommitFilesPathModel().setPath(commitFile.getBasePath()), null));
